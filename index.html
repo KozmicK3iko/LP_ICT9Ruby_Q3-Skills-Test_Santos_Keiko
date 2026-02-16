@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q3 Skills Test</title>
+
+<style>
+
+body {
+    background-image: url("alienstage.jpg");
+    background-size: cover;        
+    background-position: center;   
+    height: 100vh;
+    margin: 0;
+
+}
+
+body{
+    margin:0;
+    font-family:Segoe UI, Arial;
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1535223289827-42f1e9919769")
+    no-repeat center/cover;
+}
+
+
+nav{
+    background:#0a4c55;
+    color:rgb(255, 255, 255);
+    padding:12px 25px;
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:18px;
+}
+
+
+.wrapper{
+    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.panel{
+    width:620px;
+    padding:25px;
+    border-radius:12px;
+    background:rgba(255, 255, 255, 0.12);
+    backdrop-filter:blur(14px);
+    display:flex;
+    gap:25px;
+    color:rgb(0, 0, 0);
+}
+
+
+.left{
+    width:200px;
+    text-align:center;
+}
+
+.avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgb(255, 255, 255);
+    object-fit:cover;
+}
+
+.file{
+    margin-top:10px;
+    font-size:12px;
+}
+
+.uploadBtn{
+    background:#2fc3e6;
+    color:rgb(255, 255, 255);
+    border:none;
+    padding:8px;
+    width:100%;
+    border-radius:5px;
+    margin-top:6px;
+    cursor:pointer;
+}
+
+
+.right{
+    flex:1;
+}
+
+.right input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:none;
+    border-radius:4px;
+}
+
+.small{
+    font-size:12px;
+}
+
+.createBtn{
+    background:#2fc3e6;
+    color:rgb(255, 255, 255);
+    border:none;
+    padding:10px;
+    width:100%;
+    border-radius:5px;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+.cancelBtn{
+    background:#2fc3e6;
+    border:none;
+    padding:9px;
+    width:100%;
+    border-radius:5px;
+    margin-top:6px;
+    cursor:pointer;
+}
+
+.footer{
+    text-align:center;
+    color:rgb(84, 165, 227);
+    font-size:12px;
+    margin-top:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<nav>
+<div>
+    <a href="#">Home</a>
+    <a href="#">Fare Matrix</a>
+    <a href="#">Schedule</a>
+    <a href="#">Help</a>
+</div>
+<div>
+    <a href="#">Book Now</a>
+    <a href="#">Create Account</a>
+</div>
+</nav>
+
+<div class="wrapper">
+<div class="panel">
+
+   
+    <div class="left">
+        <img id="preview"
+        class="avatar"
+        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+        <input class="file" type="file" id="photo" accept="image/*">
+        <button class="uploadBtn" onclick="uploadPhoto()">
+            Upload Photo
+        </button>
+    </div>
+
+   
+    <div class="right">
+
+        <input type="text" id="name" placeholder="Full Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="username" placeholder="Enter your username">
+        <input type="password" id="password" placeholder="Enter your password">
+
+        <label class="small">
+            <input type="checkbox" id="terms">
+            I accept the Terms of Use and Privacy Policy
+        </label>
+
+        <button class="createBtn" onclick="createAccount()">
+            Create my account
+        </button>
+
+        <button class="cancelBtn" onclick="clearForm()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+</div>
+
+<div class="footer">
+Keiko Santos 𐔌*ˊᵕˋ*𐦯 || Ruby 9 ©2026
+</div>
+
+<script>
+
+
+function uploadPhoto(){
+    const file = document.getElementById("photo").files[0];
+    if(!file){
+        alert("Please choose a photo first.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+        document.getElementById("preview").src = e.target.result;
+        alert("Your profile pic has been uploaded.");
+    };
+    reader.readAsDataURL(file);
+}
+
+
+function createAccount(){
+
+    let name = nameInput = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let terms = document.getElementById("terms").checked;
+
+    if(!name || !email || !user || !pass){
+        alert("Please complete all fields.");
+        return;
+    }
+
+    if(!terms){
+        alert("You must accept the Terms first.");
+        return;
+    }
+
+    alert("Account successfully created!");
+}
+
+
+function clearForm(){
+    document.querySelectorAll("input").forEach(i=>{
+        if(i.type !== "checkbox" && i.type !== "file"){
+            i.value="";
+        }
+    });
+    document.getElementById("terms").checked=false;
+}
+
+</script>
+
+</body>
+</html>
